@@ -4,7 +4,7 @@ import { Navbar, Container } from 'react-bootstrap';
 
 const CustomNavbar = ({ companyName }) => {
   return (
-    <Navbar style={{ backgroundColor: '#0d1b2a' }} variant="dark" fixed="top" className="z-index-10">
+    <Navbar bg="black" variant="dark" fixed="top" className="z-index-10">
       <Container>
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
