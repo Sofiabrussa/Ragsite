@@ -8,11 +8,20 @@ import uuid
 from datetime import datetime
 from fastapi import Request
 from service1 import Service1 
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI() #Creamos una instancia de fastAPI class
 #Ejecuto funcion para crear mi tabla
 Service1.table_sessions()
 Service1.table_history() 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/test") #El camino es /test y la operacion es un get 
 async def root(): #FastAPI lo llamará cada vez que reciba una solicitud a la URL /test
