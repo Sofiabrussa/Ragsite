@@ -33,6 +33,10 @@ pip install --upgrade pip
 ```
 pip install -r requirements.txt
 ```
+- Para ejecutar el backend, se utiliza el siguiente comando
+```
+fastapi dev app1.py
+```
 
 ## Frontend  (REACT)
 Instalar librerias
