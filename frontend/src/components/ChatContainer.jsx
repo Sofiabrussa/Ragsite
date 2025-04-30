@@ -14,6 +14,7 @@ const ChatContainer = () => {
   };
 
   useEffect(() => {
+    //Creo una sesion al cargar la pagina
     const createSession = async () => {
       try {
         const response = await fetch('http://localhost:8000/session', {
@@ -34,6 +35,7 @@ const ChatContainer = () => {
     scrollToBottom();
   }, [messages]);
 
+  //Agrego el mensaje del usuario al estado
   const handleSendMessage = async (message) => {
     if (!message.trim() || !sessionId) return;
 
@@ -41,6 +43,7 @@ const ChatContainer = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setLoading(true);
 
+    //llamada al back
     try {
       const response = await fetch('http://localhost:8000/message', {
         method: 'POST',
@@ -53,6 +56,7 @@ const ChatContainer = () => {
 
       const data = await response.json();
 
+      //Agrega la respuesta del asistente a los mensajes.
       setMessages((prevMessages) => [
         ...prevMessages,
         { id: (Date.now() + 1).toString(), content: data.response.response || data.response, role: 'assistant' },
@@ -70,12 +74,12 @@ const ChatContainer = () => {
 
   return (
     <Container className="d-flex flex-column h-100">
-      <div className="flex-1 overflow-auto">
+      <div className="flex-grow-1">
         {messages.length === 0 ? (
           <Row className="h-100 d-flex justify-content-center align-items-center">
             <Col xs="auto" className="text-center">
-              <h2 className="display-4 mb-4">¡Bienvenido al chatbot de MiEmpresa!</h2>
-              <p className="text-muted mb-4">
+              <h2 className="display-4 mb-4">¡Bienvenido al chatbot de Pyplan!</h2>
+              <p className="mb-4">
                 Puedes hacerme cualquier pregunta y te responderé con la información disponible.
               </p>
             </Col>

@@ -20,7 +20,7 @@ const ChatInput = ({ onSendMessage, disabled }) => {
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Escribe un mensaje..."
         disabled={disabled}
-        className="bg-dark text-white rounded-lg pl-4 pr-12 py-3 focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50"
+        className="bg-white text-dark rounded-lg border-0 focus:outline-none focus:ring-0 disabled:opacity-50"
       />
       <Button
         type="submit"
