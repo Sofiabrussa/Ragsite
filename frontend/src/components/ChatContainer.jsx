@@ -76,30 +76,38 @@ const ChatContainer = () => {
     <Container className="d-flex flex-column h-100">
       <div className="flex-grow-1">
         {messages.length === 0 ? (
-          <Row className="h-100 d-flex justify-content-center align-items-center">
-            <Col xs="auto" className="text-center">
+          <Row className="h-100 d-flex justify-content-center align-items-center flex-column text-center">
+            <Col xs="auto">
               <h2 className="display-4 mb-4">¡Bienvenido al chatbot de Pyplan!</h2>
               <p className="mb-4">
                 Puedes hacerme cualquier pregunta y te responderé con la información disponible.
               </p>
+              <Card className="p-4 border-top border-dark">
+                <ChatInput onSendMessage={handleSendMessage} disabled={loading} />
+              </Card>
             </Col>
           </Row>
         ) : (
-          messages.map((message) => <ChatMessage key={message.id} message={message} />)
-        )}
-        <div ref={messagesEndRef} />
-        {loading && (
-          <Row className="p-4 text-center">
-            <Col>
-              <Spinner animation="border" variant="light" />
-              <span className="d-inline-block ms-3">Pensando...</span>
-            </Col>
-          </Row>
+          <>
+            {messages.map((message) => <ChatMessage key={message.id} message={message} />)}
+            <div ref={messagesEndRef} />
+            {loading && (
+              <Row className="p-4 text-center">
+                <Col>
+                  <Spinner animation="border" variant="light" />
+                  <span className="d-inline-block ms-3">Pensando...</span>
+                </Col>
+              </Row>
+            )}
+          </>
         )}
       </div>
-      <Card className="p-4 border-top border-dark">
-        <ChatInput onSendMessage={handleSendMessage} disabled={loading} />
-      </Card>
+  
+      {messages.length > 0 && (
+        <Card className="p-4 border-top border-dark mb-5">
+          <ChatInput onSendMessage={handleSendMessage} disabled={loading} />
+        </Card>
+      )}
     </Container>
   );
 };
